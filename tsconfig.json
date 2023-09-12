@@ -9,7 +9,6 @@
     "allowSyntheticDefaultImports": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "strict": true,
     "noImplicitAny": false,
     "skipLibCheck": true,
     "outDir": "./dist",

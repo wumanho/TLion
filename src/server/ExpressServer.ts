@@ -1,4 +1,4 @@
-import * as express from 'express'
+import express from 'express'
 import ServerFactory from '../factory/ServerFactory'
 import { bean } from '../decorator/index'
 
@@ -18,7 +18,7 @@ export default class ExpressServer extends ServerFactory {
   }
 
   public start(port: number) {
-    const app = express()
+    const app: express.Application = express()
     this.middlewareList.forEach((middleware) => {
       app.use(middleware)
     })
