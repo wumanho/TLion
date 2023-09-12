@@ -22,6 +22,9 @@ export default class ExpressServer extends ServerFactory {
     this.middlewareList.forEach((middleware) => {
       app.use(middleware)
     })
+    app.get('/test', (req, res) => {
+      res.send('hello')
+    })
     app.listen(port, () => {
       console.log(`server is running at http://localhost:${port}`)
     })

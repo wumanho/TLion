@@ -4,6 +4,8 @@
 import 'reflect-metadata'
 import BeanFactory from '../factory/BeanFactory'
 
+type ConstructorType = new (...args: any[]) => any
+
 // @bean 用于初始化对象到容器中
 export function bean(target: any, propertyName: string, desc: PropertyDescriptor) {
   const returnType = Reflect.getMetadata('design:returntype', target, propertyName)
@@ -23,7 +25,7 @@ export function autoware(target: any, propertyName: string): void {
 }
 
 // @lion 用于初始化应用程序
-export function lion<T extends { new (...args: any[]): {} }>(constructor: T) {
+export function lion<T extends ConstructorType>(constructor: T) {
   ;(async function () {
     // app 入口
     const main = new constructor()
