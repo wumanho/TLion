@@ -3,13 +3,10 @@
  */
 import 'reflect-metadata'
 import BeanFactory from '../factory/BeanFactory'
+export * from './router'
 
-type ConstructorType = new (...args: any[]) => any
-
-// @bean 用于初始化对象到容器中
-export function bean(target: any, propertyName: string, desc: PropertyDescriptor) {
-  const returnType = Reflect.getMetadata('design:returntype', target, propertyName)
-  BeanFactory.addBean(returnType, target[propertyName])
+interface ModuleMetadata {
+  imports?: Array<any>
 }
 
 // @autoware 用于自动注入对象
@@ -18,17 +15,19 @@ export function autoware(target: any, propertyName: string): void {
   // 从容器中返回 bean 实例
   Object.defineProperty(target, propertyName, {
     get: () => {
-      const beanConstructor = BeanFactory.getBean(type)
+      const beanConstructor = BeanFactory.getBean(type.name)
       return beanConstructor()
     }
   })
 }
 
-// @lion 用于初始化应用程序
-export function lion<T extends ConstructorType>(constructor: T) {
-  ;(async function () {
-    // app 入口
-    const main = new constructor()
-    main['main']()
-  })()
+// @Module 用于初始化应用程序
+export function Module(metadata: ModuleMetadata) {
+  return (target: Function) => {
+    for (const property in metadata) {
+      if (metadata.hasOwnProperty(property)) {
+        Reflect.defineMetadata(property, (metadata as any)[property], target)
+      }
+    }
+  }
 }

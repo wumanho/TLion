@@ -32,4 +32,4 @@ function del(path: string) {
   return settleRouterDecorators(path, 'delete')
 }
 
-export { get, post, put, del }
+export { get, post, put, del, routerMap }

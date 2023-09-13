@@ -6,7 +6,7 @@
   "main": "index.ts",
   "scripts": {
     "dev": "nodemon",
-    "test": "ts-node src/index.ts"
+    "test": "ts-node src/app/main.ts"
   },
   "keywords": [],
   "author": "",

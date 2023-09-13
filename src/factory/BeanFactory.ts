@@ -5,11 +5,11 @@
 export default class BeanFactory {
   private static beanMapper = new Map<string, any>()
 
-  public static addBean(mappingClass: Function, beanClass: any) {
-    this.beanMapper.set(mappingClass.name, beanClass)
+  public static addBean(className: string, beanClass: any) {
+    this.beanMapper.set(className, beanClass)
   }
 
-  public static getBean(mappingClass: Function): any {
-    return this.beanMapper.get(mappingClass.name)
+  public static getBean(className: string): any {
+    return this.beanMapper.get(className)
   }
 }
