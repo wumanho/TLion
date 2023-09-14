@@ -14,10 +14,7 @@ export function autoware(target: any, propertyName: string): void {
   const type = Reflect.getMetadata('design:type', target, propertyName)
   // 从容器中返回 bean 实例
   Object.defineProperty(target, propertyName, {
-    get: () => {
-      const beanConstructor = BeanFactory.getBean(type.name)
-      return new beanConstructor()
-    }
+    get: () => BeanFactory.getBean(type.name)
   })
 }
 

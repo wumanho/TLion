@@ -23,7 +23,7 @@ export default class TLion {
    * @param module 每一个被 @Module 修饰的类
    */
   private registerModules(module: any) {
-    BeanFactory.addBean(module.name, module)
+    BeanFactory.addBean(module.name, new module())
     const modules = Reflect.getMetadata('imports', module)
     if (modules) {
       for (const innerModule of modules) {
