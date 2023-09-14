@@ -16,7 +16,7 @@ export function autoware(target: any, propertyName: string): void {
   Object.defineProperty(target, propertyName, {
     get: () => {
       const beanConstructor = BeanFactory.getBean(type.name)
-      return beanConstructor()
+      return new beanConstructor()
     }
   })
 }

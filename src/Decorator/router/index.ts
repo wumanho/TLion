@@ -11,7 +11,7 @@ function settleRouterDecorators(path: string, method: string) {
   return (target: any, propertyKey: string) => {
     routerMap.set(path, {
       method,
-      cb: target[propertyKey]
+      cb: target[propertyKey].bind(target)
     })
   }
 }
