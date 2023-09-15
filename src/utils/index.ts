@@ -16,7 +16,7 @@ export function scanDirectory(dirPath: string) {
 
     if (stats.isDirectory() && file !== 'node_modules') {
       results.push(...scanDirectory(filePath))
-    } else if (stats.isFile() && file.endsWith('.provide.ts')) {
+    } else if (stats.isFile() && file.endsWith('.provider.ts')) {
       results.push(pathToFileURL(path.resolve(filePath)).href)
     }
   }

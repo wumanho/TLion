@@ -1,5 +1,5 @@
 import { Injectable, get, autoware } from '../../decorator/index'
-import SecondPage from './SecondPage.provide'
+import SecondPage from './SecondPage.provider'
 
 @Injectable
 export default class FirstPage {
