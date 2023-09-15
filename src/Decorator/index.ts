@@ -5,10 +5,6 @@ import 'reflect-metadata'
 import BeanFactory from '../factory/BeanFactory'
 export * from './router'
 
-interface ModuleMetadata {
-  imports?: Array<any>
-}
-
 // @autoware 用于自动注入对象
 export function autoware(target: any, propertyName: string): void {
   const type = Reflect.getMetadata('design:type', target, propertyName)
@@ -18,13 +14,7 @@ export function autoware(target: any, propertyName: string): void {
   })
 }
 
-// @Module 用于初始化应用程序
-export function Module(metadata: ModuleMetadata) {
-  return (target: Function) => {
-    for (const property in metadata) {
-      if (metadata.hasOwnProperty(property)) {
-        Reflect.defineMetadata(property, (metadata as any)[property], target)
-      }
-    }
-  }
+// @Injectable 用于初始化应用程序
+export function Injectable(target: any): void {
+  BeanFactory.addBean(target.name, new target())
 }

@@ -1,7 +1,7 @@
-import { Module, get, autoware } from '../../decorator/index'
-import SecondPage from './SecondPage'
+import { Injectable, get, autoware } from '../../decorator/index'
+import SecondPage from './SecondPage.provide'
 
-@Module({})
+@Injectable
 export default class FirstPage {
   @autoware
   private second: SecondPage
